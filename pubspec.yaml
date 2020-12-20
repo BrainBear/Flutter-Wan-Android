@@ -26,6 +26,7 @@ dependencies:
 
   dio: ^3.0.9
   get: 3.23.1
+  webview_flutter: ^1.0.7
 
   cached_network_image: ^2.3.1
   pull_to_refresh: ^1.6.1

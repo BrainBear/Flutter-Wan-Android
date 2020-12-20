@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wan_android/main_screen.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,7 +9,7 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Wan-Android',
       theme: ThemeData(
         primarySwatch: Colors.blue,

@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:flutter_wan_android/page/detail/aritcle_detail_screen.dart';
 import 'package:flutter_wan_android/page/home/home_controller.dart';
 import 'package:flutter_wan_android/page/home/widgets/article_item_widget.dart';
 import 'package:get/get.dart';
@@ -60,7 +61,12 @@ class HomePage extends StatelessWidget {
       () {
         return SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
-          return ArticleItemWidget(article: _homeController.articles[index]);
+              var article = _homeController.articles[index];
+          return GestureDetector(
+              onTap: () => Get.to(
+                  ArticleDetailScreen(url: article.link, title: article.title)),
+              child:
+                  ArticleItemWidget(article: article));
         }, childCount: _homeController.articles.length));
       },
     );
@@ -97,9 +103,13 @@ class HomePage extends StatelessWidget {
         pagination: SwiperPagination(),
         itemCount: _homeController.banners.length,
         itemBuilder: (ctx, index) {
-          return CachedNetworkImage(
-              fit: BoxFit.cover,
-              imageUrl: _homeController.banners[index].imagePath);
+          var banner = _homeController.banners[index];
+          return GestureDetector(
+            child: CachedNetworkImage(
+                fit: BoxFit.cover, imageUrl: banner.imagePath),
+            onTap: () => Get.to(
+                ArticleDetailScreen(url: banner.url, title: banner.title)),
+          );
         },
       );
     });
