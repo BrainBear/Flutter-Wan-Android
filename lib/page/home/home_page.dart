@@ -6,10 +6,22 @@ import 'package:get/get.dart';
 class HomePage extends StatelessWidget {
   final HomeController _homeController = Get.put(HomeController());
 
+  final ScrollController _scrollController = ScrollController();
+
+  HomePage({Key key}) : super(key: key) {
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+       _homeController.loadMore();
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Obx(() {
       return ListView.separated(
+          controller: _scrollController,
           itemBuilder: (context, index) {
             return ArticleItemWidget(article: _homeController.articles[index]);
           },
