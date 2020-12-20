@@ -11,4 +11,14 @@ class WanRepository {
   Future<Result<List<Article>>> fetchTopArticles() {
     return _removeDataSource.fetchTopArticles();
   }
+
+  Future<Result<List<Article>>> fetchArticles(int page) async {
+    var result = await _removeDataSource.fetchArticles(page);
+
+    if(result.isSuccessful) {
+      return Future.value(Result.success(result.data.datas));
+    }else{
+      return Future.value(Result.error(result.error));
+    }
+  }
 }

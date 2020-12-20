@@ -10,10 +10,21 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    wanRepository.fetchTopArticles().then((value) {
-      if (value.isSuccessful) {
-        articles.addAll(value.data);
-      }
-    });
+    _refresh();
+  }
+
+
+  _refresh() async{
+    var futureTopArticles = wanRepository.fetchTopArticles();
+    var futureFirstPageArticles = wanRepository.fetchArticles(0);
+
+    var results = await Future.wait([futureTopArticles, futureFirstPageArticles]);
+
+    var list = List<Article>();
+    if(results[0].isSuccessful && results[1].isSuccessful) {
+      list.addAll(results[0].data);
+      list.addAll(results[1].data);
+    }
+    articles.assignAll(list);
   }
 }
