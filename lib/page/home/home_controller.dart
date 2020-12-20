@@ -11,10 +11,9 @@ class HomeController extends GetxController {
   var _loading = false;
   var _pageNum = 1;
 
-  @override
-  void onInit() {
-    super.onInit();
-    _refresh();
+
+  Future<Null> refreshData() async {
+    await _refresh();
   }
 
   _refresh() async {
@@ -33,6 +32,7 @@ class HomeController extends GetxController {
     }
     articles.assignAll(list);
     _loading = false;
+    _pageNum = 1;
   }
 
   void loadMore() {
