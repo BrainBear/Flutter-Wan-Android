@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_wan_android/data/model/article_page.dart';
+import 'package:flutter_wan_android/data/model/banner.dart';
 import 'package:flutter_wan_android/data/model/result.dart';
 import 'package:flutter_wan_android/data/model/wan_api_response.dart';
 import 'package:flutter_wan_android/network/Http.dart';
@@ -18,7 +18,12 @@ class WanRemoteDataSource {
 
   Future<Result<ArticlePage>> fetchArticles(int page) async {
     return safeJsonApiCall(() => http.get('article/list/$page/json'),
-        (json) => ArticlePage.fromJson(json));
+            (json) => ArticlePage.fromJson(json));
+  }
+
+  Future<Result<List<BannerModel>>> fetchBanner() async {
+    return safeJsonListApiCall(() => http.get('banner/json'),
+            (json) => BannerModel.fromJson(json));
   }
 }
 

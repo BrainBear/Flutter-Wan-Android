@@ -1,6 +1,7 @@
 import 'package:flutter_wan_android/data/model/article.dart';
 import 'package:flutter_wan_android/data/wan_remote_data_source.dart';
 
+import 'model/banner.dart';
 import 'model/result.dart';
 
 class WanRepository {
@@ -20,5 +21,9 @@ class WanRepository {
     }else{
       return Future.value(Result.error(result.error));
     }
+  }
+
+  Future<Result<List<BannerModel>>> fetchBanner() {
+    return _removeDataSource.fetchBanner();
   }
 }

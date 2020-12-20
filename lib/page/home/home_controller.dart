@@ -1,16 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_wan_android/data/model/article.dart';
+import 'package:flutter_wan_android/data/model/banner.dart';
 import 'package:flutter_wan_android/data/wan_repository.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
   var articles = List<Article>().obs;
+  var banners = List<BannerModel>().obs;
+  var showAppBarTitle = false.obs;
 
   final wanRepository = WanRepository();
 
   var _loading = false;
   var _pageNum = 1;
 
+  set appBarTitleVisible(bool visible) {
+    showAppBarTitle.value = visible;
+  }
 
   Future<Null> refreshData() async {
     await _refresh();
@@ -33,6 +39,13 @@ class HomeController extends GetxController {
     articles.assignAll(list);
     _loading = false;
     _pageNum = 1;
+
+    var futureBanner = wanRepository.fetchBanner();
+
+    var bannerResult = await futureBanner;
+    if (bannerResult.isSuccessful) {
+      banners.assignAll(bannerResult.data);
+    }
   }
 
   void loadMore() {
