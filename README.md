@@ -1,16 +1,15 @@
 # flutter_wan_android
 
-A new Flutter application.
+用来学习 Flutter 的简单项目
 
-## Getting Started
+感谢 [Wan Android](https://wanandroid.com/) 提供的接口
 
-This project is a starting point for a Flutter application.
+## 第三方库
 
-A few resources to get you started if this is your first Flutter project:
+  * dio 网络加载
+  * Get 状态管理，路由管理
+  * webview_flutter 网页显示
+  * cached_network_image 图片缓存
+  * pull_to_refresh 下拉刷新
+  * flutter_swiper Banner 实现
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
